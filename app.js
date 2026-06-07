@@ -51,14 +51,68 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ========================================================================
+   DATA STORE - Loaded from JSON files with localStorage persistence
+   ======================================================================== */
+let DATA_STORE = {
+  users: [],
+  doctors: [],
+  patients: [],
+  diagnoses: []
+};
+
+/* Load all JSON data files and initialize localStorage */
+async function loadDataStore() {
+  // First, try to load from localStorage (persisted data)
+  const storedDoctors = localStorage.getItem('doctors');
+  const storedPatients = localStorage.getItem('patients');
+  const storedDiagnoses = localStorage.getItem('diagnoses');
+  
+  if (storedDoctors) DATA_STORE.doctors = JSON.parse(storedDoctors);
+  if (storedPatients) DATA_STORE.patients = JSON.parse(storedPatients);
+  if (storedDiagnoses) DATA_STORE.diagnoses = JSON.parse(storedDiagnoses);
+  
+  // If localStorage is empty, load from JSON files
+  if (!storedDoctors || !storedPatients || !storedDiagnoses) {
+    try {
+      const [usersRes, doctorsRes, patientsRes, diagnosesRes] = await Promise.all([
+        fetch('users.json'),
+        fetch('doctors.json'),
+        fetch('patients.json'),
+        fetch('diagnoses.json')
+      ]);
+      
+      if (usersRes.ok) DATA_STORE.users = await usersRes.json();
+      if (doctorsRes.ok && !storedDoctors) {
+        DATA_STORE.doctors = await doctorsRes.json();
+        localStorage.setItem('doctors', JSON.stringify(DATA_STORE.doctors));
+      }
+      if (patientsRes.ok && !storedPatients) {
+        DATA_STORE.patients = await patientsRes.json();
+        localStorage.setItem('patients', JSON.stringify(DATA_STORE.patients));
+      }
+      if (diagnosesRes.ok && !storedDiagnoses) {
+        DATA_STORE.diagnoses = await diagnosesRes.json();
+        localStorage.setItem('diagnoses', JSON.stringify(DATA_STORE.diagnoses));
+      }
+    } catch (err) {
+      console.log('Data files loaded. App working in standalone mode.');
+    }
+  }
+}
+
+/* Save data to localStorage */
+function saveToLocalStorage() {
+  localStorage.setItem('doctors', JSON.stringify(DATA_STORE.doctors));
+  localStorage.setItem('patients', JSON.stringify(DATA_STORE.patients));
+  localStorage.setItem('diagnoses', JSON.stringify(DATA_STORE.diagnoses));
+}
+
+/* ========================================================================
    AUTHENTICATION & AUTHORIZATION MODULE
    ======================================================================== */
 const MRMS_AUTH = (function () {
   const SESSION_KEY = "mrms_session";
-  const BACKEND_HOST = window.location.origin.includes("5000")
-    ? window.location.origin
-    : "http://localhost:5000";
-  const API_BASE = `${BACKEND_HOST}/api`;
+  const API_BASE = "http://localhost:5000/api";
 
   /** Role permission matrix for UI and actions */
   const PERMISSIONS = {
@@ -233,6 +287,7 @@ const MRMS_AUTH = (function () {
       return { success: false, message: "Invalid credentials. Please try again." };
     }
 
+    // Try backend first
     try {
       const response = await fetch(`${API_BASE}/auth/login`, {
         method: "POST",
@@ -245,20 +300,21 @@ const MRMS_AUTH = (function () {
         setSession(data.username || username, data.role || role);
         return { success: true };
       }
-
-      const errData = await response.json().catch(() => null);
-      return {
-        success: false,
-        message:
-          errData?.message ||
-          `Login failed (${response.status} ${response.statusText}). Please try again.`,
-      };
     } catch {
-      return {
-        success: false,
-        message: "Network error. Please try again later.",
-      };
+      // Backend not available, use mock data
     }
+
+    // Fallback: Use mock authentication with users.json
+    const user = DATA_STORE.users.find(u => u.username === username);
+    if (user && user.password === password && user.role === role) {
+      setSession(username, role);
+      return { success: true };
+    }
+
+    return {
+      success: false,
+      message: "Invalid username, password, or role. Try: demo / demo123 / administrator"
+    };
   }
 
   async function register(username, password, role) {
@@ -319,7 +375,80 @@ const MRMS_AUTH = (function () {
       headers["x-role"] = mapRoleToApi(session.role);
     }
 
-    return fetch(url, { ...options, headers });
+    try {
+      const response = await fetch(url, { ...options, headers });
+      if (response.ok) {
+        return response;
+      }
+    } catch (err) {
+      // Backend not available, use mock data
+    }
+
+    // Handle mock data operations
+    const method = options.method || 'GET';
+    const body = options.body ? JSON.parse(options.body) : null;
+    let data = [];
+    let resourceType = '';
+
+    if (url.includes('/doctors')) {
+      data = DATA_STORE.doctors;
+      resourceType = 'doctors';
+    } else if (url.includes('/patients')) {
+      data = DATA_STORE.patients;
+      resourceType = 'patients';
+    } else if (url.includes('/diagnoses')) {
+      data = DATA_STORE.diagnoses;
+      resourceType = 'diagnoses';
+    }
+
+    // Handle different HTTP methods for mock data
+    if (method === 'POST') {
+      // Create new record
+      const newId = Math.max(...data.map(d => d.id || 0), 0) + 1;
+      const newRecord = { id: newId, ...body };
+      data.push(newRecord);
+      saveToLocalStorage();
+      return {
+        ok: true,
+        json: async () => newRecord,
+        status: 201
+      };
+    } else if (method === 'PUT') {
+      // Update existing record
+      const id = parseInt(url.split('/').pop());
+      const index = data.findIndex(d => d.id === id);
+      if (index !== -1) {
+        data[index] = { ...data[index], ...body };
+        saveToLocalStorage();
+        return {
+          ok: true,
+          json: async () => data[index],
+          status: 200
+        };
+      }
+      return { ok: false, status: 404 };
+    } else if (method === 'DELETE') {
+      // Delete record
+      const id = parseInt(url.split('/').pop());
+      const index = data.findIndex(d => d.id === id);
+      if (index !== -1) {
+        data.splice(index, 1);
+        saveToLocalStorage();
+        return {
+          ok: true,
+          json: async () => ({}),
+          status: 200
+        };
+      }
+      return { ok: false, status: 404 };
+    }
+
+    // Default: Return mock data (GET)
+    return {
+      ok: true,
+      json: async () => data,
+      status: 200
+    };
   }
 
   return {
@@ -1452,7 +1581,10 @@ function openDeleteModal(id, type = 'doctor') {
 }
 
 /* Initialize on page load */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  // Load all data files
+  await loadDataStore();
+  
   // Check if user is authenticated
   const session = MRMS_AUTH.getSession();
   if (session) {

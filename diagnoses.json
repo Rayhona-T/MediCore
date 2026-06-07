@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "icdCode": "I10",
+    "description": "Essential (primary) hypertension",
+    "severity": "Moderate",
+    "patientId": 1
+  },
+  {
+    "id": 2,
+    "icdCode": "E11.9",
+    "description": "Type 2 diabetes mellitus without complications",
+    "severity": "Moderate",
+    "patientId": 2
+  },
+  {
+    "id": 3,
+    "icdCode": "G43.909",
+    "description": "Migraine, unspecified, without status migrainosus",
+    "severity": "Mild",
+    "patientId": 3
+  },
+  {
+    "id": 4,
+    "icdCode": "J45.909",
+    "description": "Unspecified asthma, uncomplicated",
+    "severity": "Mild",
+    "patientId": 4
+  },
+  {
+    "id": 5,
+    "icdCode": "M17.11",
+    "description": "Unilateral primary osteoarthritis of right knee",
+    "severity": "Moderate",
+    "patientId": 5
+  },
+  {
+    "id": 6,
+    "icdCode": "F32.9",
+    "description": "Major depressive disorder, single episode, unspecified",
+    "severity": "Moderate",
+    "patientId": 7
+  },
+  {
+    "id": 7,
+    "icdCode": "L40.0",
+    "description": "Psoriasis vulgaris",
+    "severity": "Mild",
+    "patientId": 8
+  },
+  {
+    "id": 8,
+    "icdCode": "K21.0",
+    "description": "Gastro-esophageal reflux disease with esophagitis",
+    "severity": "Moderate",
+    "patientId": 12
+  },
+  {
+    "id": 9,
+    "icdCode": "I25.10",
+    "description": "Atherosclerotic heart disease of native coronary artery without angina",
+    "severity": "Severe",
+    "patientId": 14
+  },
+  {
+    "id": 10,
+    "icdCode": "J18.9",
+    "description": "Pneumonia, unspecified organism",
+    "severity": "Severe",
+    "patientId": 2
+  },
+  {
+    "id": 11,
+    "icdCode": "F41.1",
+    "description": "Generalized anxiety disorder",
+    "severity": "Mild",
+    "patientId": 18
+  },
+  {
+    "id": 12,
+    "icdCode": "H52.4",
+    "description": "Presbyopia",
+    "severity": "Mild",
+    "patientId": 14
+  },
+  {
+    "id": 13,
+    "icdCode": "N39.0",
+    "description": "Urinary tract infection, site not specified",
+    "severity": "Moderate",
+    "patientId": 20
+  },
+  {
+    "id": 14,
+    "icdCode": "M54.5",
+    "description": "Low back pain",
+    "severity": "Moderate",
+    "patientId": 16
+  },
+  {
+    "id": 15,
+    "icdCode": "K59.00",
+    "description": "Constipation, unspecified",
+    "severity": "Mild",
+    "patientId": 12
+  },
+  {
+    "id": 16,
+    "icdCode": "R10.9",
+    "description": "Abdominal pain, unspecified",
+    "severity": "Moderate",
+    "patientId": 20
+  },
+  {
+    "id": 17,
+    "icdCode": "M54.2",
+    "description": "Cervicalgia",
+    "severity": "Mild",
+    "patientId": 3
+  },
+  {
+    "id": 18,
+    "icdCode": "F33.1",
+    "description": "Major depressive disorder, recurrent, moderate",
+    "severity": "Moderate",
+    "patientId": 7
+  },
+  {
+    "id": 19,
+    "icdCode": "J30.9",
+    "description": "Allergic rhinitis, unspecified",
+    "severity": "Mild",
+    "patientId": 19
+  },
+  {
+    "id": 20,
+    "icdCode": "R51",
+    "description": "Headache",
+    "severity": "Mild",
+    "patientId": 15
+  }
+]
