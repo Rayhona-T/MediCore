@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "Dr. Maya Patel",
+    "specialty": "Cardiology",
+    "department": "Cardiolog",
+    "contact": "maya.patel@caretrackclinic.com | +1 (215) 555-0144"
+  },
+  {
+    "id": 2,
+    "name": "Dr. David Chen",
+    "specialty": "Internal Medicine",
+    "department": "Internal Medicine",
+    "contact": "david.chen@caretrackclinic.com | +1 (215) 555-0167"
+  },
+  {
+    "id": 3,
+    "name": "Dr. Aisha Rahman",
+    "specialty": "Neurology",
+    "department": "Neurology",
+    "contact": "aisha.rahman@caretrackclinic.com | +1 (215) 555-0198"
+  },
+  {
+    "id": 4,
+    "name": "Dr. Samuel Alvarez",
+    "specialty": "Orthopedics",
+    "department": "Orthopedics",
+    "contact": "samuel.alvarez@caretrackclinic.com | +1 (215) 555-0112"
+  },
+  {
+    "id": 5,
+    "name": "Dr. Olivia Brooks",
+    "specialty": "Pediatrics",
+    "department": "Pediatrics",
+    "contact": "olivia.brooks@caretrackclinic.com | +1 (215) 555-0136"
+  },
+  {
+    "id": 6,
+    "name": "Dr. Marcus Bennett",
+    "specialty": "Psychiatry",
+    "department": "Behavioral Health",
+    "contact": "marcus.bennett@caretrackclinic.com | +1 (215) 555-0180"
+  },
+  {
+    "id": 7,
+    "name": "Dr. Elena Kim",
+    "specialty": "Dermatology",
+    "department": "Dermatology",
+    "contact": "elena.kim@caretrackclinic.com | +1 (215) 555-0174"
+  },
+  {
+    "id": 8,
+    "name": "Dr. Benjamin Ortiz",
+    "specialty": "Obstetrics & Gynecology",
+    "department": "OB/GYN",
+    "contact": "benjamin.ortiz@caretrackclinic.com | +1 (215) 555-0125"
+  },
+  {
+    "id": 9,
+    "name": "Dr. Priya Singh",
+    "specialty": "Gastroenterology",
+    "department": "Gastroenterology",
+    "contact": "priya.singh@caretrackclinic.com | +1 (215) 555-0159"
+  },
+  {
+    "id": 10,
+    "name": "Dr. Thomas Gallagher",
+    "specialty": "Endocrinology",
+    "department": "Endocrinology",
+    "contact": "thomas.gallagher@caretrackclinic.com | +1 (215) 555-0103"
+  }
+]

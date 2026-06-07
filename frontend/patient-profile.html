@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Patient Profile - CareTrack Clinic MRMS">
+  <title>Patient Profile | CareTrack Clinic MRMS</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body data-page="patient-profile">
+  <div class="app-layout">
+    <aside class="sidebar no-print" aria-label="Main navigation">
+      <div class="sidebar-brand">
+        <h2>CareTrack Clinic</h2>
+        <span>Medical Records</span>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li data-nav="dashboard"><a href="dashboard.html" data-page="dashboard"><span class="nav-icon">&#9632;</span> Dashboard</a></li>
+          <li data-nav="doctors"><a href="doctors.html" data-page="doctors"><span class="nav-icon">&#9877;</span> Doctors</a></li>
+          <li data-nav="patients"><a href="patients.html" data-page="patients"><span class="nav-icon">&#9829;</span> Patients</a></li>
+          <li data-nav="diagnoses"><a href="diagnoses.html" data-page="diagnoses"><span class="nav-icon">&#9888;</span> Diagnoses</a></li>
+          <li data-nav="reports"><a href="reports.html" data-page="reports"><span class="nav-icon">&#128196;</span> Reports</a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <div id="sidebar-user" class="user-info"></div>
+        <button type="button" id="logout-btn" class="btn btn-secondary btn-sm" style="width: 100%;">Logout</button>
+      </div>
+    </aside>
+    <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
+    <div class="main-content">
+      <header class="page-header no-print">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <button type="button" id="menu-toggle" class="menu-toggle" aria-label="Open menu">&#9776;</button>
+          <h1 id="profile-patient-name">Patient Profile</h1>
+        </div>
+        <a href="patients.html" class="btn btn-secondary">Back to Patients</a>
+      </header>
+
+      <div class="page-body" id="profile-content">
+        <section class="profile-grid">
+          <article class="content-card">
+            <div class="content-card-header"><h2>Patient Details</h2></div>
+            <div class="content-card-body" id="patient-details-list"></div>
+          </article>
+          <article class="content-card">
+            <div class="content-card-header"><h2>Assigned Doctor</h2></div>
+            <div class="content-card-body" id="doctor-details-list"></div>
+          </article>
+        </section>
+
+        <section class="content-card">
+          <div class="content-card-header"><h2>Diagnosis Records</h2></div>
+          <div class="content-card-body">
+            <div class="table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>ICD Code</th>
+                    <th>Description</th>
+                    <th>Severity</th>
+                    <th>Diagnosis ID</th>
+                  </tr>
+                </thead>
+                <tbody id="profile-diagnoses-tbody">
+                  <tr><td colspan="4" class="text-center text-muted">Loading...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/patients.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "username": "newuser",
+    "password": "pass123",
+    "role": "receptionist"
+  },
+  {
+    "id": 2,
+    "uuid": "96d4b42e-8270-4e49-95ed-c41c07bd37bb",
+    "username": "testuser",
+    "password": "$2b$10$ToCoiquV.q1cbEzKhzH77O.oqLw1l/Ah15C32N10/skmZszxSJkvG",
+    "role": "administrator"
+  },
+  {
+    "id": 3,
+    "uuid": "52fc24b4-0656-427f-a58c-a8a004bb9f30",
+    "username": "browserTest",
+    "password": "$2b$10$YWqkK/j9iyRel1DdjqpnG.YMX5NeXArrh.Y/7TVaYKHP47AUEi3yO",
+    "role": "clinician"
+  },
+  {
+    "id": 4,
+    "uuid": "689fb62c-0edf-41e4-9d86-3d49ae575909",
+    "username": "rayhona.t10@gmail.com",
+    "password": "$2b$10$8e0V6Vw6h3t8q.jFIxi95uc7Wr.skuncpTWMT43s0kVnnEyyeNPeK",
+    "role": "administrator"
+  },
+  {
+    "id": 5,
+    "uuid": "cd7206e7-a3be-4c64-9933-57008b230835",
+    "username": "rayhona",
+    "password": "$2b$10$kwKmezcjtI04CZ71esOT2uJZhB6btzJxAu0oxCNdW2nMjYRCLRuJu",
+    "role": "clinician"
+  },
+  {
+    "id": 6,
+    "uuid": "ddb6be61-11fd-42bd-a867-373715896b69",
+    "username": "ray",
+    "password": "$2b$10$cTKCEjaOhVFLUg69OpVrfeSqeulCPyWsrmQgv9M81o/uaGGzoeZXa",
+    "role": "receptionist"
+  },
+  {
+    "id": 7,
+    "uuid": "b84b05dc-15ad-499a-a28c-15ed837ac66d",
+    "username": "stella",
+    "password": "$2b$10$MnbvLxFsOy2IyVPOTlxUBeydwBOom0p22RI42xbH6aNDvDxgnNQ1m",
+    "role": "receptionist"
+  },
+  {
+    "id": 8,
+    "uuid": "80a724c0-8f8c-448c-bb28-f6a4d291163d",
+    "username": "Rayhona_T",
+    "password": "$2b$10$dIRmgguPUmWAacNuaR29Z.uKm5iR.CF9iwknhv0qQOX0ZHpgQr8zy",
+    "role": "receptionist"
+  }
+]
